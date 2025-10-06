@@ -1,4 +1,5 @@
 using HospitalService.Data;
+using HospitalService.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<HospitalDbContext>(options=>options.UseSqlServer( builder.Configuration.GetConnectionString("HospitalConn")));
+builder.Services.AddScoped<IHospitalService,HospitalServices>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
