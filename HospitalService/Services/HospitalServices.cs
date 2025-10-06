@@ -4,10 +4,10 @@ using HospitalService.Repositories;
 
 namespace HospitalService.Services
 {
-    public class HospitalService
+    public class HospitalServices:IHospitalService
     {
         private readonly HospitalRepositery _hospitalRepositery;
-        public HospitalService(HospitalRepositery hospitalRepositery)
+        public HospitalServices(HospitalRepositery hospitalRepositery)
         {
             _hospitalRepositery = hospitalRepositery;
         }
