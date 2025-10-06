@@ -15,7 +15,7 @@ namespace AuthService.Repositories
         }
         public async Task<Auth> verifyEmail(string email)
         {
-        return   await _dbContext.Auths.Where(e => e.Email == email).FirstOrDefaultAsync();
+        return   await _dbContext.Auths.AsNoTracking().FirstOrDefaultAsync(e => e.Email == email);
         }
     }
 }

@@ -7,7 +7,7 @@ namespace HospitalService.Repositories
         Task CreateHospital(Hospital hospital);
         Task<IEnumerable<Hospital>> GetHospitalList();
         Task<Hospital> GetHospitalById(Guid HospitalId);
-        Task Update(Hospital Hospital);
-        Task Delete(Hospital Hospital);
+        Task UpdateHospital(Hospital Hospital);
+        Task DeleteHospital(Hospital Hospital);
     }
 }

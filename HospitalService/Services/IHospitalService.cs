@@ -1,13 +1,13 @@
-﻿using HospitalService.Models;
+﻿using HospitalService.DTOs;
 
 namespace HospitalService.Services
 {
     public interface IHospitalService
     {
-        Task CreateHospital(Hospital hospital);
-        Task<IEnumerable<Hospital>> GetHospitalList();
-        Task<Hospital> GetHospitalById(Guid HospitalId);
-        Task Update(Hospital Hospital);
-        Task Delete(Hospital Hospital);
+        Task<IEnumerable<HospitalDto>> GetHospitalList();
+        Task<HospitalDto> GetHospitalById(Guid hospitalId);
+        Task<string> CreateHospital(HospitalDto hospitalDto);
+        Task<string> UpdateHospital(HospitalDto hospitalDto);
+        Task<string> DeleteHospital(Guid hospitalId);
     }
 }
