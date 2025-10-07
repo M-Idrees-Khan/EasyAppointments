@@ -1,5 +1,4 @@
-﻿using AuthService.DTOs;
-using AuthService.Models;
+﻿using AuthService.Models;
 using AuthService.Repositories;
 
 namespace AuthService.Services

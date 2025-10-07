@@ -1,6 +1,5 @@
 ﻿using AuthService.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Client;
 
 namespace AuthService.Data
 {

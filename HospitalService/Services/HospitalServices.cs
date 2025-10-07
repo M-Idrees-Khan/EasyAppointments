@@ -1,36 +1,50 @@
-﻿using HospitalService.Data;
+﻿using AutoMapper;
+using HospitalService.DTOs;
 using HospitalService.Models;
 using HospitalService.Repositories;
+using HospitalService.utilities;
 
 namespace HospitalService.Services
 {
     public class HospitalServices:IHospitalService
     {
-        private readonly HospitalRepositery _hospitalRepositery;
-        public HospitalServices(HospitalRepositery hospitalRepositery)
+        private readonly IHospitalRepositery _hospitalRepositery;
+        private IMapper _mapper;
+        private Hospital hospital=new Hospital();
+        List<HospitalDto> hospitalDtos = new List<HospitalDto>();
+        public HospitalServices(IHospitalRepositery hospitalRepositery,IMapper mapper)
         {
+            _mapper = mapper;
             _hospitalRepositery = hospitalRepositery;
         }
-        public async Task CreateHospital(Hospital hospital)
+        public async Task<IEnumerable<HospitalDto>> GetHospitalList()
         {
-          await  _hospitalRepositery.CreateHospital(hospital);
+            IEnumerable<Hospital>hospital= await _hospitalRepositery.GetHospitalList();
+            hospitalDtos=_mapper.Map<List<HospitalDto>>(hospital);
+            return hospitalDtos;
         }
-        public async Task<IEnumerable<Hospital>> GetHospitalList()
+        public async Task<HospitalDto> GetHospitalById(Guid hospitalId)
         {
-            return await _hospitalRepositery.GetHospitalList();
+            hospital= await _hospitalRepositery.GetHospitalById(hospitalId);
+         return   _mapper.Map<HospitalDto>(hospital);
         }
-        public async Task<Hospital> GetHospitalById(Guid HospitalId)
+        public async Task<string> CreateHospital(HospitalDto hospitaldto)
         {
-            return await _hospitalRepositery.GetHospitalById(HospitalId);
+            hospital = _mapper.Map<Hospital>(hospitaldto);
+            await _hospitalRepositery.CreateHospital(hospital);
+            return VTHospitalService.Success;
         }
-
-        public async Task Update(Hospital Hospital)
+        public async Task<string> UpdateHospital(HospitalDto hospitalDto)
         {
-            await _hospitalRepositery.Update(Hospital);
+            hospital = _mapper.Map<Hospital>(hospitalDto);
+            await _hospitalRepositery.UpdateHospital(hospital);
+            return VTHospitalService.Update;
         }
-        public async Task Delete(Hospital Hospital)
+        public async Task<string> DeleteHospital(Guid hospitalId)
         {
-          await  _hospitalRepositery.Delete(Hospital);
+            hospital = await _hospitalRepositery.GetHospitalById(hospitalId);
+          await  _hospitalRepositery.DeleteHospital(hospital);
+            return VTHospitalService.Delete;
         }
     }
 }

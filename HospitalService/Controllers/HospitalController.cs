@@ -1,8 +1,6 @@
 ﻿using HospitalService.DTOs;
-using HospitalService.Models;
 using HospitalService.Services;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 
 namespace HospitalService.Controllers
 {
@@ -27,23 +25,22 @@ namespace HospitalService.Controllers
             return Ok(hospital);
         }
         [HttpPost("createHospital")]
-        public async Task<ActionResult>CreateHospital([FromBody] Hospital hospital)
+        public async Task<ActionResult>CreateHospital([FromBody] HospitalDto hospitalDto)
         {
-           await _hospitalService.CreateHospital(hospital);
-            return Ok();
+           var result= await _hospitalService.CreateHospital(hospitalDto);
+            return Ok(result);
         }
         [HttpPatch("updateHospital")]
-        public async Task<ActionResult> UpdateHospital([FromBody] Hospital hospital)
+        public async Task<ActionResult> UpdateHospital([FromBody] HospitalDto hospitalDto)
         {
-            await _hospitalService.Update(hospital);
-            return Ok();
+          var result=  await _hospitalService.UpdateHospital(hospitalDto);
+            return Ok(result);
         }
         [HttpDelete("deleteHospital/{hospitalId}")]
         public async Task<ActionResult> DeleteHospital(Guid hospitalId)
         {
-            var hospital = await _hospitalService.GetHospitalById(hospitalId);
-            await _hospitalService.Delete(hospital);
-            return Ok();
+          var result=  await _hospitalService.DeleteHospital(hospitalId);
+            return Ok(result);
         }
     }
 }
