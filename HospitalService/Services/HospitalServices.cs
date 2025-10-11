@@ -8,11 +8,11 @@ namespace HospitalService.Services
 {
     public class HospitalServices:IHospitalService
     {
-        private readonly IHospitalRepositery _hospitalRepositery;
+        private readonly IHospitalRepository _hospitalRepositery;
         private IMapper _mapper;
         private Hospital hospital=new Hospital();
         List<HospitalDto> hospitalDtos = new List<HospitalDto>();
-        public HospitalServices(IHospitalRepositery hospitalRepositery,IMapper mapper)
+        public HospitalServices(IHospitalRepository hospitalRepositery,IMapper mapper)
         {
             _mapper = mapper;
             _hospitalRepositery = hospitalRepositery;

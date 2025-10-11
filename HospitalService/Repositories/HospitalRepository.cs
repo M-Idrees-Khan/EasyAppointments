@@ -4,10 +4,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HospitalService.Repositories
 {
-    public class HospitalRepositery : IHospitalRepositery
+    public class HospitalRepository : IHospitalRepository
     {
         private readonly HospitalDbContext _hospitalDbContext;
-        public HospitalRepositery(HospitalDbContext hospitalDbContext)
+        public HospitalRepository(HospitalDbContext hospitalDbContext)
         {
             _hospitalDbContext = hospitalDbContext;
         }

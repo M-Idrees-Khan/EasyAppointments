@@ -2,7 +2,7 @@
 
 namespace HospitalService.Repositories
 {
-    public interface IHospitalRepositery
+    public interface IHospitalRepository
     {
         Task CreateHospital(Hospital hospital);
         Task<IEnumerable<Hospital>> GetHospitalList();

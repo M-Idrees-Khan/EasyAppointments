@@ -1,9 +1,9 @@
-using AutoMapper;
-using HospitalService.Data;
-using HospitalService.Repositories;
-using HospitalService.Services;
-using HospitalService.utilities;
 using Microsoft.EntityFrameworkCore;
+using UserService.Data;
+using UserService.Repositories;
+using UserService.Services;
+using UserService.Utilities;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -12,10 +12,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<HospitalDbContext>(options=>options.UseSqlServer( builder.Configuration.GetConnectionString("HospitalConn")));
-builder.Services.AddScoped<IHospitalRepository, HospitalRepository>();
-builder.Services.AddScoped<IHospitalService,HospitalServices>();
-builder.Services.AddAutoMapper(typeof(AutoMapperService));
+builder.Services.AddDbContext<UserDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("UserConn")));
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserService, UserServices>();
+builder.Services.AddAutoMapper(typeof(UserServices));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
