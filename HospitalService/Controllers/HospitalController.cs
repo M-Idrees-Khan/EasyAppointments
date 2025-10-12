@@ -7,7 +7,8 @@ namespace HospitalService.Controllers
     [ApiController]
     [Route("api/[controller]")]
     public class HospitalController : ControllerBase
-    {private readonly IHospitalService _hospitalService;
+    {
+        private readonly IHospitalService _hospitalService;
         public HospitalController(IHospitalService hospitalService)
         {
                 _hospitalService = hospitalService;

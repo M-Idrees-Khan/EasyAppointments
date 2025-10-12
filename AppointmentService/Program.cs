@@ -1,9 +1,9 @@
-using AutoMapper;
-using HospitalService.Data;
-using HospitalService.Repositories;
-using HospitalService.Services;
-using HospitalService.utilities;
+using AppointmentService.Data;
+using AppointmentService.Repositories;
+using AppointmentService.Services;
+using AppointmentService.Utilities;
 using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -12,9 +12,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<HospitalDbContext>(options=>options.UseSqlServer( builder.Configuration.GetConnectionString("HospitalConn")));
-builder.Services.AddScoped<IHospitalRepository, HospitalRepository>();
-builder.Services.AddScoped<IHospitalService,HospitalServices>();
+builder.Services.AddDbContext<AppointmentDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("AppointmentConn")));
+builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
+builder.Services.AddScoped<IAppointmentService,AppointmentServices>();  
 builder.Services.AddAutoMapper(typeof(AutoMapperService));
 var app = builder.Build();
 
